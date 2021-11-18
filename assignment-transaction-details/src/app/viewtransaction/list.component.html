@@ -1,0 +1,141 @@
+﻿<h1>Transaction List</h1>
+<!--
+<table class="table table-striped">
+    <thead>
+        <tr>
+
+            <th scope="col" sortable="reference" (sort)="onSort($event)">Reference</th>
+            <th scope="col" sortable="transactionType" (sort)="onSort($event)">Transaction Type</th>
+            <th scope="col" sortable="customerNumber" (sort)="onSort($event)">Customer Number</th>
+            <th scope="col" sortable="customerName" (sort)="onSort($event)">Customer Name</th>
+            <th scope="col" sortable="customerAddress" (sort)="onSort($event)">Customer address</th>
+            <th scope="col" sortable="customerPhoneNumber">Customer phone Number</th>
+            <th scope="col" sortable="amount" (sort)="onSort($event)">amount</th>
+            <th scope="col" sortable="beneficiaryBank" (sort)="onSort($event)">Beneficiary Bank</th>
+            <th scope="col" sortable="beneficiaryACNumber" (sort)="onSort($event)">Beneficiary Account Number</th>
+            <th scope="col" sortable="paymentDetails" (sort)="onSort($event)">Payment details</th>
+            <th scope="col" sortable="cardDetail" (sort)="onSort($event)">Card Details</th>
+            <th scope="col" sortable="region" (sort)="onSort($event)">Region</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let transaction of viewTransaction">
+            <td>{{transaction.reference}}</td>
+            <td>{{transaction.transactionType}}</td>
+            <td>{{transaction.customerNumber}}</td>
+            <td>{{transaction.customerName}}</td>
+            <td>{{transaction.customerAddress}}</td>
+            <td>{{transaction.customerPhoneNumber}}</td>
+            <td>{{transaction.amount}}{{transaction.currency}}</td>
+            <td>{{transaction.beneficiaryBank}}</td>
+            <td>{{transaction.beneficiaryACNumber}}</td>
+            <td>{{transaction.paymentDetails}}</td>
+            <td>{{transaction.cardDetail}}</td>
+            <td>{{transaction.region}}</td>
+
+
+        </tr>
+        <div class="d-flex justify-content-between p-2">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshTxn()">
+            </ngb-pagination>
+
+            <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshTxn()">
+              <option [ngValue]="2">2 items per page</option>
+              <option [ngValue]="4">4 items per page</option>
+              <option [ngValue]="6">6 items per page</option>
+            </select>
+          </div>
+        <tr *ngIf="!transactions">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table> -->
+
+
+<div class="example-container mat-elevation-z8">
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="reference">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Reference </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.reference}} </mat-cell>
+    </ng-container>
+
+    <!-- Progress Column -->
+    <ng-container matColumnDef="transactionType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Transaction Type </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.transactionType}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="customerNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Customer Number </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.customerNumber}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="customerName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Customer Name </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.customerName}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="customerAddress">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Customer Address </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.customerAddress}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="customerPhoneNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Customer Phone Number </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.customerPhoneNumber}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="amount">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Amount </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.amount}} {{row.currency}}</mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="beneficiaryBank">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Beneficiary Bank </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.beneficiaryBank}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="beneficiaryACNumber">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Beneficiary Account Number </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.beneficiaryACNumber}} </mat-cell>
+    </ng-container>
+
+     <!-- Name Column -->
+     <ng-container matColumnDef="paymentDetails">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Payment Details </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.paymentDetails}} </mat-cell>
+    </ng-container>
+
+     <!-- Name Column -->
+     <ng-container matColumnDef="cardDetail">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Card Details </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.cardDetail}} </mat-cell>
+    </ng-container>
+
+     <!-- Name Column -->
+     <ng-container matColumnDef="region">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Region </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.region}} </mat-cell>
+    </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [length]="transactions.length"></mat-paginator>
+</div>
